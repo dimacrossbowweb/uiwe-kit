@@ -1,0 +1,66 @@
+/**
+** Vuetify Breakpoints
+** @see https://vuetifyjs.com/en/styles/spacing/#examples
+**/
+@use 'sass:meta';
+
+$ui-flex-grid-breakpoints-default: (
+
+	extra-small: (
+		name: xs, // .ui-col_xs_
+		columns: 12,
+		// columns: 4,
+		// gutter: 16px,
+		gutter: .5rem,
+		min-width: 0 // default, no min width
+	),
+
+	small: (
+		name: sm,
+		columns: 12,
+		// columns: 4,
+		// gutter: 16px,
+		gutter: .5rem,
+		min-width: 36em // min-with 576px
+	),
+
+	medium: (
+		name: md,
+		columns: 12,
+		// gutter: 24px,
+		gutter: .5rem,
+		min-width: 48em // min-with 768px
+	),
+
+	large: (
+		name: lg,
+		columns: 12,
+		// gutter: 24px,
+		gutter: .5rem,
+		min-width: 64em // min-with 1024px
+	),
+
+	extra-large: (
+		name: xl,
+		columns: 12,
+		// gutter: 24px,
+		gutter: .5rem,
+		min-width: 90em
+	),
+	
+	extra-extra-large: (
+		name: xxl,
+		columns: 12,
+		// gutter: 24px,
+		gutter: .5rem,
+		min-width: 200em // ? TODO
+	)
+
+);
+
+$ui-flex-grid-breakpoints: $ui-flex-grid-breakpoints-default;
+@if meta.global-variable-exists( flex-grid-breakpoints ) {
+
+	$ui-flex-grid-breakpoints: $flex-grid-breakpoints;
+
+}

@@ -1,0 +1,219 @@
+.ui-window {
+
+	position: fixed;
+
+	display: flex;
+	flex-direction: column;
+
+	overflow: hidden;
+
+	background: var( --ui-card, #fff );
+	border-radius: 12px;
+	box-shadow: 0 12px 32px rgba( 0, 0, 0, 0.18 );
+
+	transition: left 0.25s ease, top 0.25s ease, width 0.25s ease, height 0.25s ease;
+
+	&_absolute {
+
+		position: absolute;
+
+	}
+
+	&_interacting {
+
+		transition: none;
+
+	}
+
+	&__bar {
+
+		flex: 0 0 auto;
+
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		height: 40px;
+		// Symmetric padding so the two edge cells mirror each other.
+		padding: 0 8px;
+
+		user-select: none;
+
+		background: var( --ui-fill-01, rgba( 0, 0, 0, 0.03 ) );
+		border-bottom: 1px solid var( --ui-neutral-200, #e7e3ef );
+
+	}
+
+	&_maximized &__bar {
+
+		cursor: default;
+
+	}
+
+	&_maximized {
+
+		border-radius: 0;
+
+	}
+
+	// The two edge cells share the same `flex: 1 1 0` basis, so they always
+	// resolve to equal widths and keep the title centred regardless of how
+	// much each side holds.
+	&__prepend,
+	&__actions {
+
+		flex: 1 1 0;
+
+		display: flex;
+		align-items: center;
+		gap: 2px;
+
+	}
+
+	&__prepend {
+
+		justify-content: flex-start;
+
+	}
+
+	&__actions {
+
+		justify-content: flex-end;
+
+	}
+
+	&__title {
+
+		// Stretches across the gap between the two edge cells.
+		flex: 1 1 auto;
+		min-width: 0;
+
+		font-size: 14px;
+		font-weight: 600;
+		text-align: center;
+
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+
+		color: var( --ui-text-primary );
+
+	}
+
+	&__content {
+
+		flex: 1 1 auto;
+		min-height: 0;
+
+		// Scrolling is delegated to <ui-scrolling> (filling this box at 100%),
+		// so this stays a plain overflow:hidden flex child.
+		position: relative;
+		overflow: hidden;
+
+		// The scroller's inner track is `min-height: 100%; height: auto` (so it
+		// can grow and scroll). That auto height breaks `height: 100%` on slotted
+		// content. Making the track a flex column lets content fill the visible
+		// area with `flex: 1` and still grow past it (then it scrolls).
+		:deep( .ui-scroll__container ) {
+
+			display: flex;
+			flex-direction: column;
+
+		}
+
+	}
+
+	// ---- resize handles ----------------------------------------------------
+
+	&__resize {
+
+		position: absolute;
+		z-index: 1;
+
+	}
+
+	&__resize_n {
+
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 6px;
+		cursor: ns-resize;
+
+	}
+
+	&__resize_s {
+
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 6px;
+		cursor: ns-resize;
+
+	}
+
+	&__resize_e {
+
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 6px;
+		cursor: ew-resize;
+
+	}
+
+	&__resize_w {
+
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 6px;
+		cursor: ew-resize;
+
+	}
+
+	// Corners sit above the edges so the diagonal cursor wins in the overlap.
+	&__resize_ne,
+	&__resize_nw,
+	&__resize_se,
+	&__resize_sw {
+
+		z-index: 2;
+		width: 12px;
+		height: 12px;
+
+	}
+
+	&__resize_ne {
+
+		top: 0;
+		right: 0;
+		cursor: nesw-resize;
+
+	}
+
+	&__resize_nw {
+
+		top: 0;
+		left: 0;
+		cursor: nwse-resize;
+
+	}
+
+	&__resize_se {
+
+		bottom: 0;
+		right: 0;
+		cursor: nwse-resize;
+
+	}
+
+	&__resize_sw {
+
+		bottom: 0;
+		left: 0;
+		cursor: nesw-resize;
+
+	}
+
+}

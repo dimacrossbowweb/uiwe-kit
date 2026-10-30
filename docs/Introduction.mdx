@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Introduction" />
+
+# fsdp-ui
+
+A Vue 3 design system extracted from the Compass Messenger client: components,
+composables, design tokens and a runtime theming layer.
+
+## What is here
+
+| Area | Contents |
+| --- | --- |
+| **Components** | 37 components across layout, typography, forms, surfaces and data display |
+| **Theming** | Light and dark presets plus `createTheme()` for custom themes at runtime |
+| **Tokens** | 26 colour tokens and 3 base tokens, all exposed as `--ui-*` CSS custom properties |
+| **Composables** | `useBem`, `useFormat`, `useCSSVar`, `useElevation`, `useDate`, `useMobile`, `usePulsation`, `useAvatar` |
+| **Directives** | `v-focus`, `v-sticky-top`, `v-sticky-bottom`, `v-timeout` |
+| **Styles** | Typography scale, 12-column grid, and a utility class layer |
+
+## Two ways to use it
+
+Install globally and every component is available in templates:
+
+```ts
+import { createApp } from 'vue'
+import UiKit from '@compass/fsdp-ui'
+import '@compass/fsdp-ui/styles.css'
+
+createApp(App).use(UiKit).mount('#app')
+```
+
+Or import only what you use, so the rest is tree-shaken away:
+
+```vue
+<script setup lang="ts">
+import { UiBtn, UiInput } from '@compass/fsdp-ui'
+</script>
+```
+
+See **Foundations → Installation** for the full setup, including which peer
+dependencies are optional.
+
+## Theming in one line
+
+Every visual property resolves through a CSS custom property, so a theme change
+is a variable swap — no rebuild, no re-render:
+
+```ts
+import { createTheme, setTheme } from '@compass/fsdp-ui'
+
+createTheme('ocean', { brand: '#0284c7', 'fill-01': '#f0f9ff' })
+setTheme('ocean')
+```
+
+The **Theme** control in the toolbar above switches between `light`, `dark` and
+that exact `ocean` theme — it is registered by this Storybook's preview config,
+the same way an application would register one.
+
+## Notes on the extraction
+
+A few deliberate differences from the source project:
+
+- **No text fonts are bundled.** The original referenced Inter and Montserrat
+  via `@font-face`, but those files were never in the repo, so the rules
+  resolved to nothing. The family is now the `--ui-font-family` token. The icon
+  font *is* bundled, because components depend on it.
+- **`vue-router` is optional.** `UiBtn` and `UiLink` detect it at runtime and
+  fall back to plain browser navigation when it is absent.
+- **Electron coupling is gone.** The old theme layer called
+  `window.api.setTheme`; the new one is browser-only and SSR-safe.

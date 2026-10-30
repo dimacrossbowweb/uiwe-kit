@@ -1,0 +1,69 @@
+@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+@use 'sass:map';
+@use 'sass:color';
+
+$ui-switch-space-x-base: .3rem;
+$ui-switch-space-y-base: .24rem;
+
+.ui-chip {
+
+	display: inline-flex;
+
+	box-sizing: border-box;
+
+	&_disabled {
+
+		pointer-events: none;
+
+		filter: grayscale( 100% );
+
+	}
+
+	&__container {
+
+		display: inline-flex;
+		gap: 2px;
+		flex-wrap: nowrap;
+		align-items: stretch;
+
+		padding: $ui-switch-space-y-base $ui-switch-space-x-base;
+
+		box-sizing: border-box;
+
+		height: 100%;
+
+	}
+
+	&__prepend {
+
+		display: inline-flex;
+		gap: 2px;
+		align-items: center;
+
+	}
+
+	&__content {
+
+		display: inline-flex;
+		gap: 2px;
+		align-items: center;
+
+		box-sizing: border-box;
+
+		height: 100%;
+
+		flex-grow: 1;
+		flex-shrink: 1;
+
+	}
+
+	&__append {
+
+		display: inline-flex;
+		gap: 2px;
+		align-items: center;
+
+	}
+
+}

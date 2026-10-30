@@ -1,0 +1,14 @@
+// Text fonts are intentionally NOT bundled.
+//
+// The source app referenced Inter and Montserrat via @font-face, but those font
+// files were never present in the repo, so the rules resolved to nothing and the
+// browser silently fell back. Shipping dead @font-face rules in a library would
+// push that same broken lookup onto every consumer.
+//
+// Instead the family is a token. Override --ui-font-family (see themes/) or
+// declare your own @font-face and point the token at it:
+//
+//   @font-face { font-family: 'Inter'; src: url('/fonts/Inter.woff2') format('woff2'); }
+//   :root { --ui-font-family: 'Inter', sans-serif; }
+//
+// The icon font (fonts/icons) IS bundled — those files are real.

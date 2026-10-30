@@ -1,0 +1,50 @@
+.ui-ring {
+
+	display: inline-flex;
+
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	aspect-ratio: 1 / 1;
+
+	box-sizing: border-box;
+
+	border-radius: 100%;
+
+	padding: 3px;
+
+	&__ring {
+
+		position: absolute;
+		inset: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 100%;
+
+		box-sizing: border-box;
+
+		pointer-events: none;
+
+	}
+
+	&__content {
+
+		display: inline-flex;
+
+		justify-content: center;
+		align-items: center;
+
+		position: relative;
+
+		aspect-ratio: 1 / 1;
+
+		box-sizing: border-box;
+
+	}
+
+}

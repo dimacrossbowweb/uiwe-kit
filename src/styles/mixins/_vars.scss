@@ -1,0 +1,41 @@
+@use 'sass:map';
+@use 'sass:color';
+
+// Emits CSS custom properties from a token map.
+//
+//   $ns == null   → plain vars:                           --ui-<key>
+//   $ns == 'dark' → namespaced, always-available palette: --ui-dark-<key>
+//
+// The namespaced form lets styles reach the *opposite* theme's colours
+// (e.g. --ui-dark-brand while the light theme is active), since both palettes
+// are emitted regardless of which theme is currently applied.
+@mixin generate-css-variables( $map, $ns: null ) {
+
+    @each $key, $value in $map {
+
+      @if $ns == null {
+
+        --ui-#{$key}: #{$value};
+
+      } @else {
+
+        --ui-#{$ns}-#{$key}: #{$value};
+
+      }
+
+    }
+
+}
+
+// Points the active-theme vars ( --ui-<key> ) at a namespaced palette, so the
+// "current" theme is just an alias over the always-available sets. Switching
+// themes — globally or per component — only re-points these aliases.
+@mixin apply-theme( $map, $ns ) {
+
+    @each $key, $value in $map {
+
+      --ui-#{$key}: var( --ui-#{$ns}-#{$key} );
+
+    }
+
+}

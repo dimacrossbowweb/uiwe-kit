@@ -1,0 +1,33 @@
+@use '../variables/breakpoints' as b;
+
+@mixin generate-classes($prop, $prefix, $values) {
+  @each $value-name, $value-value in $values {
+    .#{$prefix}-#{$value-name} {
+      #{$prop}: #{$value-value} !important;
+    }
+  }
+}
+
+@mixin generate-responsive-classes($prop, $prefix, $values) {
+  @each $bp-name, $bp-value in b.$breakpoints {
+    @media (min-width: $bp-value) {
+      @each $value-name, $value-value in $values {
+        .#{$prefix}-#{$bp-name}-#{$value-name} {
+          #{$prop}: #{$value-value} !important;
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-container-responsive-classes($prop, $prefix, $values) {
+  @each $bp-name, $bp-value in b.$container-breakpoints {
+    @container (min-width: #{$bp-value}) {
+      @each $value-name, $value-value in $values {
+        .#{$prefix}-c-#{$bp-name}-#{$value-name} {
+          #{$prop}: #{$value-value} !important;
+        }
+      }
+    }
+  }
+}

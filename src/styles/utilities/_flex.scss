@@ -1,0 +1,115 @@
+@use '../mixins/responsive' as m;
+
+$flex-directions: (
+	
+	row: row,
+	row-reverse: row-reverse,
+	column: column,
+	column-reverse: column-reverse
+
+);
+
+@include m.generate-classes( flex-direction, 'flex', $flex-directions );
+@include m.generate-responsive-classes( flex-direction, 'flex', $flex-directions );
+@include m.generate-container-responsive-classes( flex-direction, 'flex', $flex-directions );
+
+$flex-wraps: (
+
+	wrap: wrap,
+	nowrap: nowrap,
+	wrap-reverse: wrap-reverse,
+
+);
+
+@include m.generate-classes( flex-wrap, 'flex', $flex-wraps );
+@include m.generate-responsive-classes( flex-wrap, 'flex', $flex-wraps );
+@include m.generate-container-responsive-classes( flex-wrap, 'flex', $flex-wraps );
+
+$flex-grows: (
+
+	0: 0,
+	1: 1,
+
+);
+
+$flex-shrinks: (
+
+	0: 0,
+	1: 1,
+
+);
+
+@include m.generate-classes( flex-grow, 'flex-grow', $flex-grows );
+@include m.generate-responsive-classes( flex-grow, 'flex-grow', $flex-grows );
+@include m.generate-container-responsive-classes( flex-grow, 'flex-grow', $flex-grows );
+
+@include m.generate-classes( flex-shrink, 'flex-shrink', $flex-shrinks );
+@include m.generate-responsive-classes( flex-shrink, 'flex-shrink', $flex-shrinks );
+@include m.generate-container-responsive-classes( flex-shrink, 'flex-shrink', $flex-shrinks );
+
+$flexes: (
+
+	0: 0,
+	1: 1,
+
+);
+
+@include m.generate-classes( flex, 'flex', $flexes );
+@include m.generate-responsive-classes( flex, 'flex', $flexes );
+@include m.generate-container-responsive-classes( flex, 'flex', $flexes );
+
+$justify-values: (
+
+	flex-start: flex-start,
+	flex-end: flex-end,
+	center: center,
+	space-between: space-between,
+	space-around: space-around,
+	space-evenly: space-evenly,
+	stretch: stretch,
+	initial: initial,
+	inherit: inherit
+
+);
+
+@include m.generate-classes( justify-content, 'justify', $justify-values );
+@include m.generate-responsive-classes( justify-content, 'justify', $justify-values );
+@include m.generate-container-responsive-classes( justify-content, 'justify', $justify-values );
+
+$align-values: (
+
+	flex-start: flex-start,
+	flex-end: flex-end,
+	center: center,
+	baseline: baseline,
+	stretch: stretch,
+	initial: initial,
+	inherit: inherit
+
+);
+
+@include m.generate-classes( align-items, 'align', $align-values );
+@include m.generate-responsive-classes( align-items, 'align', $align-values );
+@include m.generate-container-responsive-classes( align-items, 'align', $align-values );
+
+@include m.generate-classes( align-self, 'align-self', $align-values );
+@include m.generate-responsive-classes( align-self, 'align-self', $align-values );
+@include m.generate-container-responsive-classes( align-self, 'align-self', $align-values );
+
+$align-content-values: (
+	
+	flex-start: flex-start,
+	flex-end: flex-end,
+	center: center,
+	space-between: space-between,
+	space-around: space-around,
+	space-evenly: space-evenly,
+	stretch: stretch,
+	initial: initial,
+	inherit: inherit
+
+);
+
+@include m.generate-classes( align-content, 'align-content', $align-content-values);
+@include m.generate-responsive-classes( align-content, 'align-content', $align-content-values );
+@include m.generate-container-responsive-classes( align-content, 'align-content', $align-content-values );

@@ -1,0 +1,7 @@
+@use 'mixins' as mix;
+
+// Surface shading as a class — for elements with no scoped style of their own
+// to put it in ( e.g. the root card of a dialog ). See mixins/_surface-shade.scss.
+.surface-shade {
+	@include mix.surface-shade;
+}

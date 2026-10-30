@@ -1,0 +1,124 @@
+@font-face {
+	font-family: "ui";
+	src: url("ui.woff2?b45f498f6bc594c1498074d05ae9799f") format("woff2");
+}
+
+.uii {
+	line-height: 1;
+}
+
+.uii:before {
+	font-family: ui !important;
+	font-style: normal;
+	font-weight: normal !important;
+	vertical-align: top;
+}
+
+.uii-arrow-right:before {
+	content: "\f101";
+}
+.uii-attachment:before {
+	content: "\f102";
+}
+.uii-calendar:before {
+	content: "\f103";
+}
+.uii-chat:before {
+	content: "\f104";
+}
+.uii-check:before {
+	content: "\f105";
+}
+.uii-chevron-down:before {
+	content: "\f106";
+}
+.uii-chevron-left:before {
+	content: "\f107";
+}
+.uii-chevron-right:before {
+	content: "\f108";
+}
+.uii-copy:before {
+	content: "\f109";
+}
+.uii-document:before {
+	content: "\f10a";
+}
+.uii-error:before {
+	content: "\f10b";
+}
+.uii-eye-off:before {
+	content: "\f10c";
+}
+.uii-eye:before {
+	content: "\f10d";
+}
+.uii-hand-raised:before {
+	content: "\f10e";
+}
+.uii-hand:before {
+	content: "\f10f";
+}
+.uii-import:before {
+	content: "\f110";
+}
+.uii-link:before {
+	content: "\f111";
+}
+.uii-microphone-off:before {
+	content: "\f112";
+}
+.uii-microphone-on:before {
+	content: "\f113";
+}
+.uii-monitor:before {
+	content: "\f114";
+}
+.uii-more-horisontal:before {
+	content: "\f115";
+}
+.uii-phone-off:before {
+	content: "\f116";
+}
+.uii-recording:before {
+	content: "\f117";
+}
+.uii-rocket-3:before {
+	content: "\f118";
+}
+.uii-search:before {
+	content: "\f119";
+}
+.uii-send:before {
+	content: "\f11a";
+}
+.uii-setting-2:before {
+	content: "\f11b";
+}
+.uii-smile:before {
+	content: "\f11c";
+}
+.uii-sparkle:before {
+	content: "\f11d";
+}
+.uii-star-fill:before {
+	content: "\f11e";
+}
+.uii-telegram:before {
+	content: "\f11f";
+}
+.uii-upload:before {
+	content: "\f120";
+}
+.uii-users:before {
+	content: "\f121";
+}
+.uii-videocamera-off:before {
+	content: "\f122";
+}
+.uii-videocamera:before {
+	content: "\f123";
+}
+.uii-X:before {
+	content: "\f124";
+}

@@ -1,0 +1,26 @@
+.ui-alert {
+
+	&__header {
+
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		
+	}
+
+	&__content {
+
+		display: flex;
+		align-items: stretch;
+		gap: 8px;
+
+	}
+
+	&__body {
+
+		flex-grow: 1;
+		flex-shrink: 1;
+
+	}
+
+}

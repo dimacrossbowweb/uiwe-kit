@@ -1,0 +1,103 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Installation" />
+
+# Installation
+
+```bash
+pnpm add @compass/fsdp-ui
+```
+
+`vue` (>= 3.5) is the only required peer dependency.
+
+## Global registration
+
+```ts
+import { createApp } from 'vue'
+import UiKit from '@compass/fsdp-ui'
+import '@compass/fsdp-ui/styles.css'
+import App from './App.vue'
+
+createApp(App)
+  .use(UiKit, {
+    defaultTheme: 'dark',   // omit to follow the OS preference
+    baseStyles: true        // apply the font/background tokens to <html>
+  })
+  .mount('#app')
+```
+
+Every component is then registered under both casings, so `<UiBtn>` and
+`<ui-btn>` both resolve.
+
+### Plugin options
+
+| Option | Type | Default | Purpose |
+| --- | --- | --- | --- |
+| `components` | `boolean` | `true` | Register all components globally |
+| `directives` | `boolean` | `true` | Register `v-focus`, `v-sticky-*`, `v-timeout` |
+| `defaultTheme` | `string` | — | Theme when nothing is stored; omit to follow the OS |
+| `persistTheme` | `boolean` | `true` | Persist to `localStorage` and sync across tabs |
+| `themes` | `Record<string, ThemeTokens>` | — | Custom themes to register at install time |
+| `baseStyles` | `boolean` | `false` | Apply the base layer to `<html>` |
+
+`baseStyles` is off by default so the library never overrides a host
+application's own reset. Turn it on for a greenfield app.
+
+## Explicit imports
+
+Skip the plugin when you want the smallest possible bundle:
+
+```vue
+<script setup lang="ts">
+import { UiBtn, UiCard, useTheme } from '@compass/fsdp-ui'
+import '@compass/fsdp-ui/styles.css'
+
+const { toggleTheme } = useTheme()
+</script>
+
+<template>
+  <ui-card>
+    <ui-btn color="brand" @click="toggleTheme">Toggle theme</ui-btn>
+  </ui-card>
+</template>
+```
+
+The stylesheet is still required — it carries the tokens every component reads.
+
+Calling `initTheme()` once at startup is worth doing in this mode: without the
+plugin, nothing else resolves the stored theme or wires up OS-preference and
+cross-tab syncing.
+
+## Optional peer dependencies
+
+Only a few components need third-party packages. They are declared optional, so
+your install stays lean and you add just what you use:
+
+| Package | Needed by |
+| --- | --- |
+| `vue-router` | `UiBtn` (`to` prop), `UiLink` |
+| `gsap` | `UiDialog`, `UiMenu`, `UiWindow`, `UiBottomSheet` |
+| `moment` | `UiCalendar`, `UiDatePicker` |
+| `emoji-mart`, `@emoji-mart/data` | `UiEmoji` |
+| `@splidejs/splide`, `@splidejs/vue-splide` | `UiSlider`, `UiSwipe` |
+
+Nothing in the current component set requires any of them — `UiBtn` and
+`UiLink` degrade gracefully when `vue-router` is missing. The rest become
+relevant as later waves land.
+
+## Using the SCSS sources
+
+The compiled stylesheet covers most needs, but the Sass sources are published
+too if you want the mixins and variables:
+
+```scss
+@use '@compass/fsdp-ui/scss/mixins' as mix;
+@use '@compass/fsdp-ui/scss/variables' as vars;
+```
+
+## TypeScript
+
+Types ship with the package and need no extra configuration. Global component
+types are not registered in `GlobalComponents`, so if you rely on global
+registration and want template type-checking, import the components explicitly
+in the files where that matters.

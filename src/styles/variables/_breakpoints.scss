@@ -1,0 +1,20 @@
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Container-query breakpoints. These are matched against the width of the
+// nearest ancestor with `container-type` set (a panel / card / column), not
+// the viewport — so the scale is much smaller than $breakpoints above.
+$container-breakpoints: (
+  xs: 0,
+  sm: 240px,
+  md: 360px,
+  lg: 480px,
+  xl: 600px,
+  xxl: 720px
+);

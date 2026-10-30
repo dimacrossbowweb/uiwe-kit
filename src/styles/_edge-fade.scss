@@ -1,0 +1,76 @@
+@use 'sass:math';
+@use 'sass:list';
+
+// ── Fading the edges of a scrollable area ───────────────────────────────────
+//
+// The top and bottom of the visible part fade smoothly into transparency — but
+// only where there is still something to scroll past that edge: at the very
+// start or end, the outermost item is shown in full. The component decides
+// which edges fade ( edgeFadeStyle ): it sets `--edge-fade-top` /
+// `--edge-fade-bottom` on the element — the fade height, or 0. The mask covers
+// the whole block, scrollbar included if it lives inside.
+
+// Typed, so an edge fades in and out smoothly instead of snapping.
+@property --edge-fade-top {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: 0px;
+}
+
+@property --edge-fade-bottom {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: 0px;
+}
+
+// Number of points on the fade curve. A linear ramp reads as a step at the
+// zone's boundary, so opacity follows smoothstep instead: slow near the edge
+// and near the content, faster in between.
+$edge-fade-steps: 8;
+
+@function smoothstep( $t ) {
+	@return $t * $t * ( 3 - 2 * $t );
+}
+
+@function edge-fade-alpha( $t ) {
+	@return math.div( math.round( smoothstep( $t ) * 1000 ), 1000 );
+}
+
+// Top: from the edge ( 0, transparent ) down to `$size` ( opaque ).
+@function edge-fade-top-stops( $size ) {
+
+	$stops: ();
+
+	@for $i from 0 through $edge-fade-steps {
+		$t:     math.div( $i, $edge-fade-steps );
+		$stops: list.append( $stops, rgba( 0, 0, 0, edge-fade-alpha( $t ) ) calc( #{ $size } * #{ $t } ), comma );
+	}
+
+	@return $stops;
+
+}
+
+// Bottom: from `100% - $size` ( opaque ) to the edge ( 100%, transparent ).
+@function edge-fade-bottom-stops( $size ) {
+
+	$stops: ();
+
+	@for $i from 0 through $edge-fade-steps {
+		$t:     math.div( $i, $edge-fade-steps );
+		$stops: list.append( $stops, rgba( 0, 0, 0, edge-fade-alpha( 1 - $t ) ) calc( 100% - #{ $size } * #{ 1 - $t } ), comma );
+	}
+
+	@return $stops;
+
+}
+
+.edge-fade {
+
+	mask-image: linear-gradient(
+		to bottom,
+		list.join( edge-fade-top-stops( var( --edge-fade-top ) ), edge-fade-bottom-stops( var( --edge-fade-bottom ) ), comma )
+	);
+
+	transition: --edge-fade-top .2s ease, --edge-fade-bottom .2s ease;
+
+}

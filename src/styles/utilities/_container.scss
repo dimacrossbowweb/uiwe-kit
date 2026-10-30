@@ -1,0 +1,9 @@
+@use '../mixins/responsive' as m;
+
+$container-types: (
+	normal: normal,
+	size: size,
+	inline-size: inline-size
+);
+
+@include m.generate-classes( container-type, 'container', $container-types );

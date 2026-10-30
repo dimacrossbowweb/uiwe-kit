@@ -1,0 +1,15 @@
+.ui-float-window {
+
+    // position (fixed|absolute) is set inline from the `fixed` prop.
+
+    max-width: 100dvw;
+    max-height: 100dvh;
+
+    &_released {
+
+        transition: left .2s,
+                    top .2s;
+
+    }
+
+}

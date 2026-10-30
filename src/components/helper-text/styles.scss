@@ -1,0 +1,26 @@
+.ui-helper-text {
+
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+
+    &_block {
+
+        display: flex;
+
+    }
+
+    &__form {
+
+        width: 100%;
+
+    }
+
+    &__message {
+
+        width: 100%;
+
+    }
+
+}

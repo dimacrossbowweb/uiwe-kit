@@ -1,0 +1,56 @@
+.ui-calendar {
+
+	user-select: none;
+
+	&__body {
+
+		display: inline-block;
+
+		overflow: hidden;
+
+		width: 100%;
+
+		position: relative;
+
+
+	}
+
+}
+
+.ui-calendar-link {
+
+	color: var( --ui-text-primary );
+
+	text-transform: uppercase;
+
+	font-weight: bolder;
+
+	cursor: pointer;
+
+}
+
+.ui-calendar-text {
+
+	color: var( --ui-text-primary );
+
+	&_selected {
+
+		font-weight: bold!important;
+
+		color: var( --ui-text-primary );
+
+	}
+
+}
+
+.ui-calendar-tools {
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 5px 0!important;
+
+	color: var( --ui-text-primary );
+
+}

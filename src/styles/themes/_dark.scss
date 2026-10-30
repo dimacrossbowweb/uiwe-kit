@@ -1,0 +1,56 @@
+$theme-colors: (
+
+	/* Main */
+	fill-01: #16242f,
+	fill-02: #1d2e3b,
+	fill-03: #25394a,
+
+	/* Core */
+	brand: #6D6FA2,
+	brand-600: #1c252e,
+	neutral: #e9eef3,
+	neutral-100: #111111,
+	neutral-200: #2a3b4a,
+	neutral-300: #5a6a7a,
+	neutral-400: #7c8c9c,
+	neutral-500: #9aa9b8,
+	neutral-700: #e9eef3,
+	negative: #ef4444,
+	success: #10b981,
+	warning: #f59e0b,
+
+	/* Controls */
+	input: #16242f,
+	placeholder: #5a6a7a,
+	dropdown: #1d2e3b,
+	dropdown-hover: #25394a,
+	card: #1d2e3b,
+
+	/* Links */
+	// Lighter than brand: brand itself reads poorly on dark surfaces.
+	// `link-inverse` is for brand-filled surfaces.
+	link: #a9abe0,
+	link-inverse: #c9e3ff,
+
+	/* Typography */
+	text-primary: #e9eef3,
+	text-secondary: #7c8c9c,
+
+	/* Status */
+	status-01: #f59e0b,
+	status-02: #9b95a8,
+	status-03: #2e7eea,
+	status-04: #2a3b4a,
+
+	/* Scrollbar */
+	// See light: one look for native scrollbars and ui-scrolling.
+	scrollbar-track: rgba(0, 0, 0, 0.04),
+	scrollbar-thumb: rgba(255, 255, 255, 0.35),
+	scrollbar-thumb-hover: rgba(200, 200, 200, 0.55),
+
+	/* Toast */
+	// See light. On dark surfaces a shadow separates the plate from the background.
+	toast-background: rgba(8, 10, 14, 0.92),
+	toast-text: #ffffff,
+
+);

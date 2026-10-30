@@ -1,0 +1,91 @@
+/**
+** Link
+**/
+.ui-link {
+
+	$selector: &;
+
+	position: relative!important;
+
+	display: inline-flex!important;
+	align-items: center;
+	gap: 4px;
+
+	cursor: pointer;
+
+	text-decoration: none;
+
+	transition: all .3s;
+
+	&:hover {
+
+		text-decoration: underline;
+
+		#{ $selector }__text {
+
+			&:after {
+
+				opacity: 1;
+
+				background-color: var(--ui-accent);
+
+			}
+
+		}
+
+	}
+
+	&_truncate {
+
+		display: table;
+		table-layout: fixed;
+
+		width: 100%;
+
+	}
+
+	&_block {
+
+		display: block;
+
+	}
+
+	&_mono {
+
+		font-variant-numeric: tabular-nums;
+		
+	}
+
+	&_disabled {
+
+		pointer-events: none;
+		cursor: not-allowed;
+
+		opacity: 0.5;
+
+	}
+
+	&__text {
+
+		position: relative;
+
+		display: inline-block;
+
+		&:after {
+
+			content: '';
+
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			width: 100%;
+			height: 1px;
+			opacity: 0;
+			background-color: white;
+
+		}
+		
+	}
+
+}

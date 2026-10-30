@@ -1,0 +1,12 @@
+// Scrollbar geometry — shared by the native-scrollbar styles ( _scrollbar.scss )
+// and ui-scrolling, which draws its own bar. Colours live in the themes
+// ( scrollbar-* ) because they depend on them.
+
+/** Bar thickness. */
+$scrollbar-size: 8px;
+
+/** Thumb corner radius. */
+$scrollbar-radius: 4px;
+
+/** Gap between the thumb and the edges of the bar. */
+$scrollbar-inset: 1px;

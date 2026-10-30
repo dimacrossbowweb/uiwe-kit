@@ -1,0 +1,140 @@
+/**
+** @see https://github.com/sermonis/vue-telegram/blob/main/src/scss/_mixins.scss
+** @see https://sass-lang.com/documentation/at-rules/extend/
+**/
+
+// /**
+// ** Responsive/Fluid Text.
+// ** @see https://blog.hubspot.com/website/responsive-text
+// **/
+// .text-fluid
+
+@use '../variables' as *;
+
+@mixin ui-control () {
+		
+	display: flex;
+	position: relative;
+	
+	flex-basis: 100%;
+
+	margin: 0;
+	padding: 0;	
+
+	user-select: none;
+	// pointer-events: none;
+
+	box-sizing: border-box;	
+	border: 1px solid rgba( 255, 255, 255, 0.2 );
+	transition: border-color .3s ease-out;
+
+	// border-radius: 5px;
+	background-color: rgba( 0, 0, 0, 0.2 );
+
+}
+
+@mixin ui-control-activated () {	
+
+	border-color: rgba( 255, 255, 255, 0.5 );
+
+}
+
+@mixin ui-control-disabled () {	
+
+	pointer-events: none;
+	user-select: none;
+	
+	cursor: default;
+	opacity: .7;
+
+}
+
+@mixin ui-control-container () {
+
+	// pointer-events: all;
+		
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	position: relative;
+	/** 
+	** @todo get back vars
+	**/
+	// gap: $ui-control-gutter-base;
+	
+	flex-basis: 100%;
+
+	/** 
+	** @todo get back vars
+	**/
+	// padding: $ui-control-space-x-base $ui-control-space-y-base;
+
+	border-radius: inherit;	
+
+}
+
+@mixin ui-control-aside () {
+
+	display: flex;
+	align-items: center;
+	flex: 0;
+
+	/** 
+	** @todo get back vars
+	**/
+	// gap: $ui-control-gutter-base;
+
+	line-height: 1;
+	user-select: none;
+
+}
+
+@mixin ui-control-reset () {
+
+	margin: 0;
+	padding: 0;
+
+	font-size: inherit;
+	font-family: inherit;
+
+	text-align: left;
+	text-decoration: none;
+	text-indent: 0;
+
+	// color: currentColor;
+	color: inherit;
+
+	line-height: 1;
+
+	outline: none;
+
+	border: medium none;
+	border-spacing: 0;
+	border-radius: 0;
+
+	list-style: none outside none;
+
+	background: none repeat scroll 0 0 transparent;
+	box-shadow: none;
+
+	appearance: none;
+	writing-mode: horizontal-tb; 
+
+	touch-action: manipulation;
+	// resize: none;
+
+}
+
+@mixin ui-control-hide () {
+
+	visibility: hidden;
+	opacity: 0;
+
+	width: 0;
+	height: 0;
+
+	margin: 0;
+	padding: 0;
+
+}

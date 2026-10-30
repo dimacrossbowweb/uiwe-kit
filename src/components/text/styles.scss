@@ -1,0 +1,39 @@
+/**
+** Text
+**/
+.ui-text {
+
+	display: inline-block;
+
+	// Own line-height so the text never collapses when a parent resets it
+	// (e.g. an image wrapper using line-height: 0).
+	line-height: 1.4;
+
+	&_truncate {
+
+		display: table;
+		table-layout: fixed;
+
+		width: 100%;
+
+	}
+
+	&_block {
+
+		display: block;
+
+	}
+
+	&_mono {
+
+		font-variant-numeric: tabular-nums;
+		
+	}
+
+	&_nowrap {
+
+		white-space: nowrap;
+
+	}
+
+}

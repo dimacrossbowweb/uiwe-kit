@@ -1,0 +1,53 @@
+// // Base CSS variables
+// :root {
+//   // Colors
+//   --ui-primary-color: #42b983;
+//   --ui-secondary-color: #35495e;
+//   --ui-success-color: #4caf50;
+//   --ui-danger-color: #f44336;
+  
+//   // Text
+//   --ui-text-color: #2c3e50;
+//   --ui-text-inverse-color: #ffffff;
+  
+//   // Backgrounds
+//   --ui-bg-color: #ffffff;
+//   --ui-bg-inverse-color: #1a1a1a;
+  
+//   // Spacing
+//   --ui-spacing-base: 8px;
+//   --ui-spacing-xs: 4px;
+//   --ui-spacing-sm: 8px;
+//   --ui-spacing-md: 16px;
+  
+//   // Borders
+//   --ui-border-radius: 4px;
+//   --ui-border-width: 1px;
+//   --ui-border-color: #e0e0e0;
+// }
+
+// // SCSS fallback variables
+// $theme-vars: (
+//   primary-color: var(--ui-primary-color),
+//   text-color: var(--ui-text-color),
+//   bg-color: var(--ui-bg-color),
+//   border-radius: var(--ui-border-radius)
+// ) !default;
+
+// Переходим на новый синтаксис @use
+@use 'sass:color';
+@use 'sass:map';
+
+// SCSS переменные
+$theme-vars: (
+  spacing-sm: 8px,
+  border-radius: 4px,
+  text-color: #2c3e50
+) !default;
+
+// CSS Custom Properties с fallback
+:root {
+  @each $name, $value in $theme-vars {
+    --ui-#{$name}: #{$value};
+  }
+}

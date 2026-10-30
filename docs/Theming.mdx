@@ -1,0 +1,157 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Theming" />
+
+# Theming
+
+Every visual property in the system resolves through a CSS custom property named
+`--ui-<token>`. Switching theme rewrites those variables, so it costs one
+attribute change — no rebuild, no component re-render, no flash.
+
+## How it works
+
+The stylesheet emits both palettes under their own namespace — always, whatever
+theme is active — and an active-theme alias over one of them:
+
+```css
+:root {
+  --ui-light-brand: #6D6FA2; /* …every light token */
+  --ui-dark-brand:  #6D6FA2; /* …every dark token  */
+}
+
+:root, [data-theme="light"] { --ui-brand: var(--ui-light-brand); /* … */ }
+[data-theme="dark"]         { --ui-brand: var(--ui-dark-brand);  /* … */ }
+```
+
+Setting `data-theme` on `<html>` is the entire mechanism. `setTheme()` does that
+and bumps an internal `themeVersion` counter, which is what makes
+`useCSSVar()` re-evaluate inside `computed()` — otherwise
+`getComputedStyle()` would be read once and never again.
+
+## Switching themes
+
+```ts
+import { useTheme } from '@compass/fsdp-ui'
+
+const { theme, isDark, themes, setTheme, toggleTheme, useSystemTheme } = useTheme()
+
+setTheme('dark')      // explicit
+toggleTheme()         // light ⇄ dark
+useSystemTheme()      // hand control back to the OS
+```
+
+`theme` is read-only — mutating it directly would bypass the DOM update, so
+changes go through `setTheme()`.
+
+### System preference
+
+With no stored choice and no `defaultTheme`, the library follows
+`prefers-color-scheme` and keeps following it as the OS setting changes. The
+moment `setTheme()` or `toggleTheme()` is called, that link is cut and the
+explicit choice wins. `useSystemTheme()` restores it.
+
+### Persistence
+
+The selected theme is written to `localStorage` under `ui:theme` and synced
+across tabs via the `storage` event. Disable with `persistTheme: false`.
+
+## Custom themes
+
+`createTheme()` registers a theme at runtime by emitting a
+`:root[data-theme="<name>"]` rule. Declare only what changes:
+
+```ts
+import { createTheme, setTheme } from '@compass/fsdp-ui'
+
+createTheme('ocean', {
+  'fill-01': '#f0f9ff',
+  'fill-02': '#e0f2fe',
+  brand: '#0284c7',
+  'text-primary': '#0c4a6e'
+})
+
+setTheme('ocean')
+```
+
+Omitted tokens fall through to the light preset. To base a theme on dark
+instead:
+
+```ts
+createTheme('midnight', { brand: '#a78bfa' }, { extends: 'dark' })
+```
+
+`extends: 'dark'` copies the dark preset's computed values in at registration
+time. That copy is necessary: once the element carries `data-theme="midnight"`,
+the `[data-theme="dark"]` rule no longer matches, so the values would otherwise
+be lost.
+
+Registering the same name again replaces it, and if that theme is currently
+active the change applies immediately — which makes live theme editing work.
+
+### At install time
+
+```ts
+app.use(UiKit, {
+  themes: {
+    ocean: { brand: '#0284c7', 'fill-01': '#f0f9ff' }
+  },
+  defaultTheme: 'ocean'
+})
+```
+
+## Forcing a theme on one component
+
+Every component accepts a `theme` prop — `'auto'` (default, follows the app),
+`'light'` or `'dark'`:
+
+```vue
+<!-- a dark toolbar inside a light app -->
+<ui-toolbar theme="dark" />
+```
+
+It works through two paths, and both are needed:
+
+- **Stylesheet colours.** The plugin stamps `data-theme` on the component's root
+  element. Because the alias rules match `[data-theme]` on *any* element, every
+  `var(--ui-*)` in that subtree re-points to the forced palette.
+- **Colours resolved in JS.** Components that compute a colour (button fill,
+  text colour, contrast) call `useCSSVar(name, props.theme)`, which reads
+  `--ui-light-<name>` / `--ui-dark-<name>` directly when a theme is forced.
+
+The stamping comes from `uiThemeMixin`, which `app.use(UiKit)` injects into
+every component. When importing components explicitly without the plugin,
+apply it yourself:
+
+```ts
+import { UiToolbar, withUiTheme } from '@compass/fsdp-ui'
+withUiTheme(UiToolbar)
+```
+
+Your own styles can reach the opposite palette at any time through
+`--ui-light-*` / `--ui-dark-*`, e.g. `color: var(--ui-dark-text-primary)`.
+
+## Overriding without a theme
+
+For a one-off change, set the variable in your own CSS. Anything more specific
+than `:root` wins:
+
+```css
+.checkout-panel {
+  --ui-brand: #16a34a;
+}
+```
+
+Every component inside that subtree picks it up, because they all read the
+variable rather than a hard-coded colour.
+
+## Where colours come from
+
+Component props take *token names*, not just colours:
+
+```vue
+<ui-btn color="brand" />      <!-- resolves --ui-brand, follows the theme -->
+<ui-btn color="#ff0000" />    <!-- literal, ignores the theme -->
+```
+
+`useCSSVar()` tries the token first and falls back to treating the value as a
+literal CSS colour, so both forms work — but only the token form re-themes.

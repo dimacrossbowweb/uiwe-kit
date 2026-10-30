@@ -1,0 +1,16 @@
+@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+
+.ui-form {
+
+	width: 100%;
+
+	box-sizing: border-box;
+	
+	&_disabled {
+
+		@include mix.ui-control-disabled();
+
+	}
+
+}

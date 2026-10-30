@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Foundations/Grid" />
+
+# Grid & breakpoints
+
+A 12-column responsive grid built from `UiContainer`, `UiRow` and `UiCol`.
+
+```vue
+<ui-container>
+  <ui-row>
+    <ui-col :xs="12" :md="6" :lg="4">Cell</ui-col>
+    <ui-col :xs="12" :md="6" :lg="4">Cell</ui-col>
+    <ui-col :xs="12" :md="6" :lg="4">Cell</ui-col>
+  </ui-row>
+</ui-container>
+```
+
+Live examples are under **Components → Layout**.
+
+## Breakpoints
+
+| Name | Min width |
+| --- | --- |
+| `xs` | 0 |
+| `sm` | 576px |
+| `md` | 768px |
+| `lg` | 992px |
+| `xl` | 1200px |
+| `xxl` | 1400px |
+
+Mobile-first: a value applies from its breakpoint upward until a larger one
+overrides it. `:xs="12" :md="6"` means full width below 768px and half width
+from 768px on.
+
+## Column props
+
+| Prop | Purpose |
+| --- | --- |
+| `xs` … `xxl` | Column span (1–12) at that breakpoint |
+| `xsOffset` … `xxlOffset` | Leading empty columns |
+| `reverse` | Reverses the internal direction |
+
+## Row props
+
+`UiRow` controls alignment per breakpoint — `start`, `center`, `end`, `top`,
+`middle`, `bottom` each take a breakpoint name — plus:
+
+| Prop | Purpose |
+| --- | --- |
+| `noGutters` | Removes the gutter between columns |
+| `fill` | Stretches to the available height |
+| `reverse` | Reverses column order |
+| `exact` | Disables wrapping |
+
+## Container queries
+
+The system also defines a **container** breakpoint scale, matched against the
+nearest ancestor with `container-type` rather than the viewport:
+
+| Name | Min width |
+| --- | --- |
+| `xs` | 0 |
+| `sm` | 240px |
+| `md` | 360px |
+| `lg` | 480px |
+| `xl` | 600px |
+| `xxl` | 720px |
+
+These are for components that must adapt to the panel they sit in — a sidebar
+card should reflow on its own width, not the window's. The scale is
+deliberately much smaller than the viewport one.
+
+## Utility classes
+
+Beyond the grid, the stylesheet ships a utility layer covering display, flex,
+gap, spacing, position, inset, overflow, opacity, rounding, shadow, aspect
+ratio, alignment, text colour and alignment, white-space, line-clamp,
+visibility, transition and pointer-events.
+
+```html
+<div class="d-flex justify-center align-center gap-2 rounded-lg">…</div>
+```
+
+Rounding, for example: `rounded-none`, `rounded-sm`, `rounded`, `rounded-md`,
+`rounded-lg`, `rounded-xl`, `rounded-full`, plus per-side variants like
+`rounded-t-none`.
+
+Using the Sass sources directly gives you the mixins behind these:
+
+```scss
+@use '@compass/fsdp-ui/scss/mixins' as mix;
+@use '@compass/fsdp-ui/scss/variables' as vars;
+```

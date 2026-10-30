@@ -1,0 +1,152 @@
+@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+
+@use 'sass:map';
+@use 'sass:color';
+
+$ui-button-size-base: 2.8rem;
+$ui-button-gutter-base: .4rem;
+$ui-button-space-base: .9rem;
+
+.ui-btn {
+
+	display: inline-block;
+
+	$selector: &;
+
+	position: relative;
+	padding: $ui-button-space-base;
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	height: $ui-button-size-base;
+
+	border: none;
+
+	transition: filter 0.3s;
+
+	&:hover {
+
+		filter: brightness(150%);
+
+	}
+
+	&:focus {
+
+		outline: none;
+
+	}
+
+	&_focused {
+
+		outline: none;
+		filter: brightness(150%);
+
+	}
+
+	&_disabled {
+
+		pointer-events: none;
+		cursor: not-allowed;
+
+		opacity: 0.5;
+
+	}
+
+	&_plain {
+
+		background: none!important;
+		box-shadow: none!important;
+
+	}
+
+	&_flat {
+
+		box-shadow: none!important;
+
+	}
+
+	&_block {
+
+		display: block!important;
+
+		width: 100%!important;
+
+	}
+
+	&_icon {
+
+		aspect-ratio: 1/1;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+	&__container {
+
+		width: 100%;
+		height: 100%;
+
+		display: flex!important;
+		justify-content: center;
+		align-items: center;
+		gap: $ui-button-gutter-base;
+
+		box-sizing: border-box;
+
+		// Side icon — three columns: prepend | content | append. The outer ones
+		// are equal `1fr`, so the content is centred in the whole button even
+		// with an icon on one side only. Columns are pinned explicitly: without
+		// prepend the content still lands in the second. Only with icons —
+		// empty columns would add extra gap.
+		&_aside {
+
+			display: grid!important;
+			grid-template-columns: 1fr auto 1fr;
+
+		}
+
+	}
+
+	&__prepend {
+
+		grid-column: 1;
+		justify-self: start;
+
+		display: flex;
+		align-items: center;
+
+	}
+
+	&__body {
+
+		grid-column: 2;
+		min-width: 0;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		white-space: nowrap;
+
+		// overflow: hidden;
+		text-overflow: ellipsis;
+
+		letter-spacing: .07rem;
+
+	}
+
+
+	&__append {
+
+		grid-column: 3;
+		justify-self: end;
+
+		display: flex;
+		align-items: center;
+
+	}
+
+}

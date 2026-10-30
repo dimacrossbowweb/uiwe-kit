@@ -1,0 +1,58 @@
+$theme-colors: (
+
+	/* Main */
+	fill-01: #ffffff,
+	fill-02: #f7f5fb,
+	fill-03: #f1edfa,
+
+	/* Core */
+	brand: #6D6FA2,
+	brand-600: #6f51e6,
+	neutral: #1e1e1e,
+	neutral-100: #ffffff,
+	neutral-200: #d6cfe5,
+	neutral-300: #9b95a8,
+	neutral-400: #6b6478,
+	neutral-500: #4a4357,
+	neutral-700: #1e1e1e,
+	negative: #ef4444,
+	success: #10b981,
+	warning: #f59e0b,
+
+	/* Controls */
+	input: #f5f3fa,
+	placeholder: #9b95a8,
+	dropdown: #ffffff,
+	dropdown-hover: #f1edfa,
+	card: #ffffff,
+
+	/* Links */
+	// `link` — a link on a regular surface (fill-*, cards).
+	// `link-inverse` — on a brand-filled surface, where `link` would blend in.
+	link: #6D6FA2,
+	link-inverse: #c9e3ff,
+
+	/* Typography */
+	text-primary: #1e1e1e,
+	text-secondary: #6b6478,
+
+	/* Status */
+	status-01: #f59e0b,
+	status-02: #9b95a8,
+	status-03: #2e7eea,
+	status-04: #d6cfe5,
+
+	/* Scrollbar */
+	// One look for native scrollbars and ui-scrolling. Semi-transparent so it
+	// reads the same on any surface of the theme.
+	scrollbar-track: rgba(0, 0, 0, 0.04),
+	scrollbar-thumb: rgba(0, 0, 0, 0.22),
+	scrollbar-thumb-hover: rgba(0, 0, 0, 0.4),
+
+	/* Toast */
+	// A dark translucent plate in both themes: reads over any surface and is
+	// never mistaken for an interface card.
+	toast-background: rgba(28, 28, 36, 0.9),
+	toast-text: #ffffff,
+
+);

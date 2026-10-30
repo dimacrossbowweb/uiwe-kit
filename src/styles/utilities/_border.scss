@@ -1,0 +1,185 @@
+/**
+** TODO: Tilewind vars
+**/
+.border {
+	
+	border-width: 1px;
+
+}
+
+.\!border-0 {
+
+	border-width: 0!important;
+
+}
+
+
+.border-0 {
+
+	border-width: 0;
+
+}
+
+.border-2 {
+
+	border-width: 2px;
+
+}
+
+.border-b {
+
+	border-bottom-width: 1px;
+
+}
+
+.border-b-0 {
+
+	border-bottom-width: 0;
+
+}
+
+.border-l {
+
+	border-left-width: 1px;
+
+}
+
+.border-r {
+
+	border-right-width: 1px;
+
+}
+
+.border-s {
+
+	border-inline-start-width: 1px;
+
+}
+
+.border-t {
+
+	border-top-width: 1px;
+
+}
+
+.border-t-0 {
+
+	border-top-width: 0;
+
+}
+
+.border-t-2 {
+
+	border-top-width: 2px;
+
+}
+
+.border-solid {
+
+	border-style: solid;
+
+}
+
+.border-dashed {
+
+	border-style: dashed;
+
+}
+
+.border-dotted {
+
+	border-style: dotted;
+
+}
+
+.border-none {
+
+	border-style: none;
+
+}
+
+.border-current {
+
+	border-color: currentColor;
+
+}
+
+.border-gray-200 {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-gray-200 ) / var( --tw-border-opacity ) );
+
+}
+
+.border-gray-300 {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-gray-300 ) / var( --tw-border-opacity ) );
+
+}
+
+.border-gray-400 {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-gray-400 ) / var( --tw-border-opacity ) );
+
+}
+
+.border-gray-800 {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-gray-800 ) / var( --tw-border-opacity ) );
+
+}
+
+.border-gray-800\/10 {
+
+	border-color: rgb( var( --color-gray-800 ) /.1 );
+
+}
+
+.border-primary {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-primary-DEFAULT ) / var( --tw-border-opacity ) );
+
+}
+
+.border-primary-200\/50 {
+
+	border-color: rgb( var( --color-primary-200 ) / .5 );
+
+}
+
+.border-primary-200\/75 {
+
+	border-color: rgb( var( --color-primary-200 ) / .75 );
+
+}
+
+.border-primary-500 {
+
+	--tw-border-opacity: 1;
+	border-color: rgb( var( --color-primary-500 ) / var( --tw-border-opacity ) );
+
+}
+
+.border-primary-900\/50 {
+
+	border-color: rgb( var( --color-primary-900 ) / .5 );
+
+}
+
+.border-transparent {
+
+	border-color: transparent;
+
+}
+
+.border-r-gray-200 {
+
+	--tw-border-opacity: 1;
+	border-right-color: rgb( var( --color-gray-200 ) / var( --tw-border-opacity ) );
+
+}
+

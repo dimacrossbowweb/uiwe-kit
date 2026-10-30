@@ -1,0 +1,68 @@
+﻿@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+
+@use 'sass:map';
+@use 'sass:color';
+
+.ui-divider {
+
+	width: 100%;
+	padding: 0.2rem 0;
+
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+
+	&__left {
+
+		flex-grow: 1;
+		flex-shrink: 1;
+
+		height: 1px;
+		width: 100%;
+
+	}
+
+	&__label {
+
+		flex-grow: 0;
+		flex-shrink: 0;
+
+	}
+
+	&__right {
+
+		flex-grow: 1;
+		flex-shrink: 1;
+
+		height: 1px;
+		width: 100%;
+
+	}
+
+	&_vertical {
+
+		width: auto;
+		padding: 0 0.2rem;
+
+		flex-direction: column;
+		justify-content: center;
+
+		.ui-divider__left,
+		.ui-divider__right {
+
+			width: 1px;
+			height: 100%;
+
+		}
+
+		.ui-divider__label {
+
+			transform: rotate( 90deg );
+			white-space: nowrap;
+
+		}
+
+	}
+
+}

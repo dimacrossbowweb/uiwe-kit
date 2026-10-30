@@ -1,0 +1,31 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use './variables' as v;
+
+@function map-deep-get( $map, $keys... ) {
+
+	@each $key in $keys {
+		
+		$map: meta.map-get( $map, $key );
+	
+	}
+	
+	@return $map;
+
+}
+
+@mixin mq( $mq-breakpoint ) {
+
+	@if map.has-key( v.$ui-flex-grid-breakpoints, $mq-breakpoint ) {
+
+		$mq-breakpoint: map.deep-get( v.$ui-flex-grid-breakpoints, $mq-breakpoint, 'min-width' );
+
+	}
+
+	@media screen and ( min-width: #{ $mq-breakpoint } ) {
+		
+		@content;
+	
+	}
+
+}

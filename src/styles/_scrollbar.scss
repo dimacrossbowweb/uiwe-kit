@@ -1,0 +1,56 @@
+@use 'variables' as vars;
+
+/**
+ * Native scrollbars styled to match ui-scrolling, which draws its own bar:
+ * a thin bar with a rounded translucent thumb, visible while the pointer is
+ * over the scrollable area.
+ *
+ * Part of the opt-in base layer ( [data-ui-base] ), because a `*` selector
+ * would otherwise restyle every scrollbar of the host app.
+ *
+ * Only ::-webkit-scrollbar. The standard scrollbar-width / scrollbar-color are
+ * deliberately not set here or in components: in Chromium 121+ either of them
+ * on an element switches ::-webkit-scrollbar off entirely, and the bar turns
+ * back into the system one.
+ */
+
+:root[data-ui-base] {
+
+	*::-webkit-scrollbar {
+		width: vars.$scrollbar-size;
+		height: vars.$scrollbar-size;
+		background: transparent;
+	}
+
+	*::-webkit-scrollbar-track,
+	*::-webkit-scrollbar-corner {
+		background: transparent;
+	}
+
+	*:hover::-webkit-scrollbar-track {
+		background: var(--ui-scrollbar-track);
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: transparent;
+		// A transparent border + background-clip leave a gap around the thumb —
+		// the same inset ui-scrolling's thumb has from the edges of its bar.
+		border: vars.$scrollbar-inset solid transparent;
+		background-clip: padding-box;
+		border-radius: vars.$scrollbar-radius;
+	}
+
+	*:hover::-webkit-scrollbar-thumb {
+		background-color: var(--ui-scrollbar-thumb);
+	}
+
+	*::-webkit-scrollbar-thumb:hover,
+	*::-webkit-scrollbar-thumb:active {
+		background-color: var(--ui-scrollbar-thumb-hover);
+	}
+
+	*::-webkit-scrollbar-button {
+		display: none;
+	}
+
+}

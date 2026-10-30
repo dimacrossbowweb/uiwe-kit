@@ -1,0 +1,182 @@
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:map';
+@use '../mixins' as *;
+@use './variables' as v;
+@use './helpers' as helper;
+@use './mixins' as grid;
+
+// .ui-container styles live in the container component ( Vuetify v-container counterpart ).
+
+.ui-row-span,
+.ui-row {
+
+	@include grid.row();
+
+	&.ui-row_reverse {
+	
+		@include grid.row-reverse();		
+	
+	}
+
+}
+
+.ui-col_reverse {
+
+	@include grid.col-reverse();
+
+}
+
+@each $label, $map in v.$ui-flex-grid-breakpoints {
+
+	@include helper.mq( map.get( $map, min-width ) ) {
+
+    	.ui-row {
+
+			@include grid.row-gutter( map.get( $map, gutter ) );
+
+			// TODO: Gutter xs/sm/md/lg/xl/xxl/none
+			// TODO: $ui-flex-grid-gutter-default
+
+			&.ui-row_no-gutters {
+
+				// margin-right: 0;
+				// margin-left: 0;
+
+				margin: 0;
+
+			}
+
+		}
+		
+		[ class^=ui-col_ ], 
+		[ class*=ui-col_ ],
+		[ class^=ui-col ]:not([class*=ui-column]),
+		[ class*=ui-col ]:not([class*=ui-column]) {
+
+			@include grid.col-gutter( map.get( $map, gutter ) );
+
+			.ui-row_no-gutters & {
+
+				// padding-right: 0;
+				// padding-left: 0;
+
+				padding: 0;
+
+			}
+			
+			.ui-row_exact & {
+
+				flex-grow: 0;
+
+			}
+			
+			.ui-row_fill & {
+
+				// flex: 1 1 auto; // .flex-fill
+
+				outline: 10px solid lightgreen;
+
+				margin: 10px;
+
+				width: 100%;
+
+				flex-grow: 1;
+				flex-shrink: 1;
+
+			}
+
+		}
+
+		.ui-col-#{ map.get( $map, name ) },
+		.ui-col_#{ map.get( $map, name ) },
+		.ui-col {
+
+			flex-grow: 1;
+			flex-basis: 0;
+			// flex: 1 1 auto; // Fill
+
+			max-width: 100%;
+			box-sizing: border-box;
+
+		}
+		
+		@for $i from 1 through map.get( $map, columns ) {
+
+			.ui-col_#{ map.get( $map, name ) }_#{ $i } {
+				
+				@include grid.col( math.div( $i, map.get( $map, columns ) ), map.get( $map, gutter ) );
+			
+			}
+
+			.ui-col_#{ map.get( $map, name ) }_offset_#{ $i } {
+				
+				@include grid.offset( math.div( $i, map.get( $map, columns ) ) );
+			
+			}
+
+		}
+
+		.ui-row_start_#{ map.get( $map, name ) } {
+			
+			@include grid.start();
+		
+		}
+		
+		.ui-row_center_#{ map.get( $map, name ) } {
+			
+			@include grid.center();
+		
+		}
+		
+		.ui-row_end_#{ map.get( $map, name ) } {
+			
+			@include grid.end();
+		
+		}
+		
+		.ui-row_top_#{ map.get( $map, name ) } {
+			
+			@include grid.top();
+		
+		}
+
+		.ui-row_middle_#{ map.get( $map, name ) } {
+			
+			@include grid.middle();
+		
+		}
+
+		.ui-row_bottom_#{ map.get( $map, name ) } {
+			
+			@include grid.bottom();
+		
+		}
+
+		.ui-row_around_#{ map.get( $map, name ) } {
+			
+			@include grid.around();
+		
+		}
+
+		.ui-row_between_#{ map.get( $map, name ) } {
+		
+			@include grid.between();
+		
+		}
+
+		.ui-col_first_#{ map.get( $map, name ) } {
+		
+			@include grid.first();
+		
+		}
+
+		.ui-col_last_#{ map.get( $map, name ) } {
+		
+			@include grid.last();
+		
+		}
+	
+	}
+
+}

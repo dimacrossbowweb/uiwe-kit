@@ -1,0 +1,30 @@
+.ui-swipe {
+
+    padding: 0 !important;
+
+    overflow-y: auto!important;
+
+    &__slide {
+
+        box-sizing: border-box;
+
+        opacity: 0;
+
+        transition: opacity .3s ease-in-out;
+
+        &_active {
+
+            opacity: 1;
+
+        }
+
+    }
+
+}
+
+.splide__list {
+
+    padding: 10px 0;
+    box-sizing: border-box;
+
+}

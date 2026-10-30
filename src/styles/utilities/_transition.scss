@@ -1,0 +1,598 @@
+/**
+** The Power of Named Transitions in Vue
+** @see https://css-tricks.com/the-power-of-named-transitions-in-vue/
+**/
+
+/**
+** Zoom Fade Transition
+** @name zoom-fade
+**/
+.zoom-fade-enter-from {
+	
+	transform: scale( 0.97 );
+	opacity: 0;
+
+}
+.zoom-fade-leave-to {
+
+	transform: scale( 1.03 );
+	opacity: 0;
+
+}
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+
+	transition: transform .35s, opacity .28s ease-in-out;
+
+}
+
+/**
+** Fade Transition - 1x
+** @name fade
+**/
+.fade-enter-from,
+.fade-leave-to {
+	
+	opacity: 0;
+
+}
+.fade-enter-active,
+.fade-leave-active {
+
+	transition: opacity .28s ease-in-out;
+
+}
+
+/**
+** Fade Transition - 2x
+** @name fade-2x
+**/
+.fade-2x-enter-from,
+.fade-2x-leave-to {
+
+	opacity: 0;
+
+}
+.fade-2x-enter-active,
+.fade-2x-leave-active {
+	
+	transition: opacity 2.56s ease-in-out;	
+
+}
+
+/**
+** Slide Transition
+** @name slide
+**/
+.slide-enter-from {
+
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( 400px, 0, 0 );
+
+}
+.slide-enter-to { 
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.slide-enter-active,
+.slide-leave-active { 
+	
+	transition: 0.5s cubic-bezier( 0.4, 0, 0.2, 1 );
+
+}
+.slide-leave {
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.slide-leave-to {
+
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( -400px, 0, 0 );
+
+}
+
+/**
+** Slide Fade Transition
+** @name slide-fade
+**/
+.slide-fade-enter-from {
+	
+	opacity: 0;
+	transform: translateX( -30% );
+
+}
+.slide-fade-leave-to{
+	
+	opacity: 0;
+	transform: translateX( 30% );
+
+}
+.slide-fade-enter-active, 
+.slide-fade-leave-active {
+	
+	transition: opacity .35s, transform .4s;
+
+}
+
+/**
+** Zoom Transition
+** @name zoom-out
+**/
+.zoom-enter-from, 
+.zoom-leave-to {
+	
+	opacity: 0;
+	transform: scale( 0 );
+
+}
+.zoom-enter-active, 
+.zoom-leave-active {
+	
+	transition: opacity .35s ease-in-out, transform .45s ease-out;
+
+}
+
+/**
+** Fade Bottom Transition - 1x
+** @name fade-bottom
+**/
+.fade-bottom-enter-from {
+	
+	opacity: 0;
+	transform: translateY( -8% );
+
+}
+.fade-bottom-leave-to{
+	
+	opacity: 0;
+	transform: translateY( 8% );
+
+}
+.fade-bottom-enter-active, 
+.fade-bottom-leave-active {
+
+	transition: opacity .3s, transform .35s;
+
+}
+
+/**
+** Fade Bottom Transition - 2x
+** @name fade-bottom-2x
+**/
+.fade-bottom-2x-enter-from {
+	
+	opacity: 0;
+	transform: translateY( -4% );
+
+}
+.fade-bottom-2x-leave-to {
+	
+	opacity: 0;
+	transform: translateY( 4% );
+
+}
+.fade-bottom-2x-enter-active, 
+.fade-bottom-2x-leave-active {
+
+	transition: opacity .2s, transform .25s;
+
+}
+
+/**
+** Fade Top Transition - 1x
+** @name fade-top
+**/
+.fade-top-enter-from {
+	
+	opacity: 0;
+	transform: translateY( 8% );
+
+}
+.fade-top-leave-to {
+	
+	opacity: 0;
+	transform: translateY( -8% );
+
+}
+.fade-top-enter-active, 
+.fade-top-leave-active {
+
+	transition: opacity .3s, transform .35s;
+
+}
+
+/**
+** Fade Top Transition - 2x
+** @name fade-top-2x
+**/
+.fade-top-2x-enter-from {
+	
+	opacity: 0;
+	transform: translateY( 4% );
+
+}
+.fade-top-2x-leave-to {
+	
+	opacity: 0;
+	transform: translateY( -4% );
+
+}
+.fade-top-2x-enter-active, 
+.fade-top-2x-leave-active {
+	
+	transition: opacity .2s, transform .25s;
+
+}
+
+/**
+** Rotate Transition
+** @name rotate
+**/
+.rotate-enter-from { 
+	
+	transform: perspective( 500px ) rotate3d( 0, 1, 0, 90deg );
+
+}
+.rotate-leave-to {
+	
+	transform: perspective( 500px ) rotate3d( 0, 1, 0, -90deg );
+
+}
+.rotate-enter-active,
+.rotate-leave-active {
+	
+	transition: 0.5s;
+
+}
+
+/**
+** Scroll Top Transition
+** @name scroll-top
+**/
+.scroll-top-enter-from,
+.scroll-top-leave-to {
+	
+	opacity: 0;
+	transform: translate3d( 0, -40px, 0 );
+
+}
+.scroll-top-enter-active,
+.scroll-top-leave-active { 
+	
+	transition: 0.5s;
+
+}
+.scroll-top-move {
+	
+	opacity: 0.5;
+	transition: 0.5s;
+
+}
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.top-enter-active,
+	.top-leave-active { transition: none; }
+	.top-move { transition: none; }
+
+}
+
+/**
+** Scroll Left Transition
+** @name scroll-left
+**/
+.scroll-left-enter-from,
+.scroll-left-leave-to {
+	
+	opacity: 0;
+	transform: translate3d( -40px, 0, 0 );
+
+}
+.scroll-left-enter-active,
+.scroll-left-leave-active { 
+	
+	transition: 0.5s;
+
+}
+.scroll-left-move {
+	
+	opacity: 0.5;
+	transition: 0.5s;
+
+}
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.left-enter-active,
+	.left-leave-active { transition: none; }
+	.left-move { transition: none; }
+
+}
+
+/**
+** Scroll Right Transition
+** @name scroll-right
+**/
+.scroll-right-enter-from,
+.scroll-right-leave-to {
+	
+	opacity: 0;
+	transform: translate3d( 40px, 0, 0 );
+
+}
+.scroll-right-enter-active,
+.scroll-right-leave-active { 
+	
+	transition: 0.5s;
+
+}
+.scroll-right-move {
+	
+	opacity: 0.5;
+	transition: 0.5s;
+
+}
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.right-enter-active,
+	.right-leave-active { transition: none; }
+	.right-move { transition: none; }
+
+}
+
+/**
+** Scroll Bottom Transition
+** @name scroll-bottom
+**/
+.scroll-bottom-enter-from,
+.scroll-bottom-leave-to {
+
+	opacity: 0;
+	transform: translate3d( 0, 30px, 0 );
+
+}
+.scroll-bottom-enter-active,
+.scroll-bottom-leave-active { 
+	
+	transition: 0.5s;
+
+}
+.scroll-bottom-move {
+	
+	opacity: 0.5;
+	transition: 0.5s;
+
+}
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.bottom-enter-active,
+	.bottom-leave-active { transition: none; }
+	.bottom-move { transition: none; }
+
+}
+
+/**
+** Next Transition
+** @name next
+**/
+.next-enter-from {
+	
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( 400px, 0, 0 );
+
+}  
+.next-enter-to { 
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.next-enter-active,
+.next-leave-active {
+	
+	transition: 0.5s cubic-bezier( 0.4, 0, 0.2, 1 );
+
+}
+.next-leave {
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.next-leave-to {
+	
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( -400px, 0, 0 );
+
+}
+
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.next-enter-from {
+		
+		opacity: 0;
+		transform: translate3d( 100px, 0, 0 );
+	
+	}
+	.next-enter-active,
+	.next-leave-active { 
+		
+		transition: 0.5s;
+	
+	}
+	.next-leave-to {
+		
+		opacity: 0;
+		transform: translate3d( -100px, 0, 0 );
+	
+	}
+
+}
+
+/**
+** Prev Transition
+** @name prev
+**/
+.prev-enter-from {
+	
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( -400px, 0, 0 );
+
+}
+.prev-enter-to { 
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.prev-enter-active,
+.prev-leave-active { 
+	
+	transition: 0.5s cubic-bezier( 0.4, 0, 0.2, 1 );
+
+}
+.prev-leave { 
+	
+	transform: scale3d( 1, 1, 1 );
+
+}
+.prev-leave-to {
+
+	opacity: 0;
+	transform: scale3d( 2, 0.5, 1 ) translate3d( 400px, 0, 0 );
+
+}
+
+/**
+** If animations are reduced at the OS level,
+** use simpler transitions
+**/
+@media screen and ( prefers-reduced-motion: reduce ) {
+
+	.prev-enter-from { 
+		
+		opacity: 0; 
+		transform: translate3d( -100px, 0, 0 );
+	
+	}
+	.prev-enter-active,
+	.prev-leave-active {
+		
+		transition: 0.5s;
+	
+	}
+	.prev-leave-to {
+		
+		opacity: 0; 
+		transform: translate3d( 100px, 0, 0 );
+	
+	}
+
+}
+
+/**
+** Positive Transition
+** @name positive
+**/
+.positive-enter-active { 
+	
+	animation: positive 1s;
+
+}
+@keyframes positive {
+	
+	0% { transform: translate3d( 0, 0, 0 ); }
+	25% { transform: translate3d( 0, -20px, 0 ); }
+	50% { transform: translate3d( 0, 20px, 0 ); }
+	75% { transform: translate3d( 0, -20px, 0 ); }
+	100% { transform: translate3d( 0, 0, 0 ); }
+
+}
+
+/**
+** Negative Transition
+** @name negative
+**/
+.negative-enter-active { 
+	
+	animation: negative 1s;
+
+}
+@keyframes negative {
+	
+	0% { transform: translate3d( 0, 0, 0 ); }
+	25% { transform: translate3d( -20px, 0, 0 ); }
+	50% { transform: translate3d( 20px, 0, 0 ); }
+	75% { transform: translate3d( -20px, 0, 0 ); }
+	100% { transform: translate3d( 0, 0, 0 ); }
+
+}
+
+/**
+** List Transition Group
+** @name list
+**/
+.list-leave-active {
+	
+	position: absolute;
+
+}
+.list-enter,
+.list-leave-to {
+	
+	opacity: 0;
+	transform: translateX( 30px );
+
+}
+
+/**
+** List Enter Up Transition Group
+** @name list-enter-up
+**/
+.list-enter-up-enter-active,
+.list-enter-up-leave-active {
+	
+	transition: none !important;
+
+}
+.list-enter-up-enter-from,
+.list-enter-up-leave-to {
+	
+	opacity: 0;
+	transform: translateY( 30px );
+
+}
+
+/**
+** List Fade Transition Group
+** @name list-fade
+**/
+.list-fade-enter-active, 
+.list-fade-leave-active {
+	
+	transition: opacity .35s;
+
+}
+.list-fade-enter-from, 
+.list-fade-leave-to  {
+	
+	opacity: 0;
+
+}

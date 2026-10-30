@@ -1,0 +1,116 @@
+{
+  "name": "uiwekit",
+  "version": "0.1.0",
+  "description": "Vue 3 design system — 85 themeable components, composables and design tokens",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "design-system",
+    "component-library",
+    "components",
+    "ui",
+    "typescript",
+    "scss",
+    "theming",
+    "dark-mode"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./date": {
+      "types": "./dist/date.d.ts",
+      "import": "./dist/date.mjs",
+      "require": "./dist/date.cjs"
+    },
+    "./carousel": {
+      "types": "./dist/carousel.d.ts",
+      "import": "./dist/carousel.mjs",
+      "require": "./dist/carousel.cjs"
+    },
+    "./emoji": {
+      "types": "./dist/emoji.d.ts",
+      "import": "./dist/emoji.mjs",
+      "require": "./dist/emoji.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./styles": "./dist/styles.css",
+    "./scss/*": "./src/styles/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src/styles"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.app.json",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006 --host 127.0.0.1",
+    "build-storybook": "storybook build",
+    "gen:icons": "node scripts/generate-icon-names.mjs",
+    "prepack": "pnpm typecheck && pnpm build"
+  },
+  "peerDependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@splidejs/splide": "^4.1.4",
+    "@splidejs/vue-splide": "^0.6.12",
+    "emoji-mart": "^5.6.0",
+    "moment": "^2.30.1",
+    "vue": "^3.5.0",
+    "vue-router": "^4.0.0 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vue-router": { "optional": true },
+    "moment": { "optional": true },
+    "emoji-mart": { "optional": true },
+    "@emoji-mart/data": { "optional": true },
+    "@splidejs/splide": { "optional": true },
+    "@splidejs/vue-splide": { "optional": true }
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.3.0",
+    "gsap": "^3.15.0"
+  },
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "10.2.17",
+    "@storybook/vue3": "^10.2.17",
+    "@storybook/vue3-vite": "^10.2.17",
+    "@types/node": "^24.12.0",
+    "@vitejs/plugin-vue": "^6.0.4",
+    "@vue/tsconfig": "^0.8.1",
+    "sass-embedded": "^1.100.0",
+    "storybook": "^10.2.17",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^5.0.3",
+    "vue": "^3.5.25",
+    "vue-router": "^5.2.0",
+    "vue-tsc": "^3.2.5"
+  }
+}

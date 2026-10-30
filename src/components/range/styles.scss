@@ -1,0 +1,59 @@
+.ui-range {
+
+    position: relative;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    &_disabled {
+
+        pointer-events: none;
+
+    }
+
+    &__track {
+
+        position: relative;
+
+        box-sizing: border-box;
+
+        width: 100%;
+        height: 100%;
+
+        background-color: var( --ui-neutral );
+
+        border-radius: 4px;
+
+    }
+
+        &__indicator {
+
+            position: absolute;
+
+            box-sizing: border-box;
+
+            height: 100%;
+
+            left: 0;
+
+            top: 0;
+
+            transition: box-shadow .2s,
+                        filter .2s;
+
+        }
+
+            &__thumb {
+
+                position: absolute;
+
+                border-radius: 100%;
+
+                box-sizing: border-box;
+
+            }
+
+};

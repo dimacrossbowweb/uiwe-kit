@@ -1,0 +1,17 @@
+/**
+ * Surface shading: translucent layers over the element's own fill, top to
+ * bottom — a brand glow from the top-left corner, a counter-glow from the
+ * bottom-right, a soft shadow towards the bottom and a darkening towards the
+ * right edge.
+ *
+ * Only `background-image`: the colour stays whatever the element set itself,
+ * so the mixin layers over any fill. Don't override it later with the
+ * `background:` shorthand — that resets the image too.
+ */
+@mixin surface-shade {
+  background-image:
+    radial-gradient(120% 60% at 0% 0%, color-mix(in srgb, var(--ui-brand) 14%, transparent) 0%, transparent 60%),
+    radial-gradient(90% 50% at 100% 100%, color-mix(in srgb, var(--ui-brand) 10%, transparent) 0%, transparent 65%),
+    linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.07) 100%),
+    linear-gradient(90deg, transparent 75%, rgba(0, 0, 0, 0.05) 100%);
+}

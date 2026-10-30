@@ -1,0 +1,65 @@
+// Full design-system stylesheet: tokens, fonts, grid and utility classes.
+// Consumers import this once — `import '@compass/fsdp-ui/styles'`.
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'fonts' as *;
+@use 'grid' as *;
+@use 'utilities' as *;
+@use 'scrollbar';
+@use 'edge-fade';
+@use 'surface-shade';
+@use 'themes/light' as light;
+@use 'themes/dark' as dark;
+@use 'themes/base' as base;
+
+// Theme-independent tokens (typography stack, radii, motion), plus both colour
+// palettes under their own namespace. The palettes are always emitted, whatever
+// theme is active, so light styles can reach dark colours and vice versa
+// through --ui-light-* / --ui-dark-*.
+:root {
+
+	@include generate-css-variables(base.$base-tokens);
+	@include generate-css-variables(light.$theme-colors, 'light');
+	@include generate-css-variables(dark.$theme-colors, 'dark');
+
+}
+
+// The active theme is just an alias over one of the palettes above.
+// Matching on the [data-theme] attribute (not :root[data-theme]) lets ANY
+// element re-scope the theme for its subtree — this is what the per-component
+// `theme` prop relies on. :root with no attribute defaults to light.
+//
+// Runtime themes from createTheme() are emitted as :root[data-theme="<name>"],
+// which outranks these aliases, so they keep working unchanged.
+:root,
+[data-theme='light'] {
+
+	@include apply-theme(light.$theme-colors, 'light');
+
+}
+
+[data-theme='dark'] {
+
+	@include apply-theme(dark.$theme-colors, 'dark');
+
+}
+
+// Opt-in base layer. Applies the font token and smooths theme switching.
+// Scoped to [data-ui-base] so the library never fights a host app's reset.
+:root[data-ui-base],
+:root[data-ui-base] body {
+
+	font-family: var(--ui-font-family);
+	color: var(--ui-text-primary);
+	background-color: var(--ui-fill-01);
+
+}
+
+:root[data-ui-base] body {
+
+	transition:
+		background-color var(--ui-theme-transition),
+		color var(--ui-theme-transition),
+		border-color var(--ui-theme-transition);
+
+}

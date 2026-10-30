@@ -1,0 +1,17 @@
+.ui-list {
+
+	display: flex;
+	flex-direction: column;
+
+	position: relative;
+
+	&_disabled {
+
+		opacity: .5;
+		cursor: default;
+
+		pointer-events: none;
+
+	}
+
+}

@@ -1,0 +1,31 @@
+﻿@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+
+@use 'sass:map';
+@use 'sass:color';
+
+.ui-sheet {
+
+	// display: inline-block;
+
+	// Base styles
+	padding: calc(var(--ui-spacing-sm, #{map.get(vars.$theme-vars, 'spacing-sm')}) * 2);
+	border: var(--ui-border-width, #{map.get(vars.$theme-vars, 'border-width')}) solid transparent;
+	border-radius: var(--ui-border-radius, #{map.get(vars.$theme-vars, 'border-radius')});
+	gap: var(--ui-spacing-xs, #{map.get(vars.$theme-vars, 'spacing-xs')});
+	
+	&_disabled {
+
+		pointer-events: none;
+		cursor: not-allowed;
+
+	}
+
+	&_block {
+
+		width: 100%!important;
+
+	}
+
+
+}

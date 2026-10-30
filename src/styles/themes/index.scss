@@ -1,0 +1,5 @@
+// Both theme files export `$theme-colors`, so forwarding them bare would
+// collide. Prefix each so `@use 'themes' as *` stays usable.
+@forward './base';
+@forward './dark' as dark-*;
+@forward './light' as light-*;

@@ -1,0 +1,66 @@
+﻿@use '@/styles/variables' as vars;
+@use '@/styles/mixins' as mix;
+
+@use 'sass:map';
+@use 'sass:color';
+
+$ui-switch-space-y-base: .9rem;
+
+.ui-switch {
+
+	display: flex;
+	gap: $ui-switch-space-y-base;
+	align-items: center;
+
+	&__controller {
+
+		padding: 2px;
+		border-radius: 20px;
+		position: relative;
+		cursor: pointer;
+		transition:
+			background-color 0.3s,
+			filter 0.3s;
+
+		filter: grayscale( 70% );
+
+		&_on {
+
+			filter: none;
+
+		}
+
+		&_disabled {
+
+			pointer-events: none;
+			cursor: not-allowed;
+			filter: grayscale( 100% );
+
+		}
+
+	}
+
+	&__toggler {
+
+		width: 16px;
+		height: 16px;
+		background-color: #fff;
+		border-radius: 50%;
+		transition: transform 0.3s;
+
+	}
+
+	&__label {
+
+		font-size: 14px;
+		color: var(--ui-text-color);
+
+		&_disabled {
+
+			opacity: 0.7;
+
+		}
+
+	}
+
+}

@@ -1,0 +1,40 @@
+// Max widths per viewport width, as in Vuetify 3's v-container:
+// below the first breakpoint the container spans the full width of its parent.
+$ui-container-max-widths: (
+	960px: 900px,
+	1280px: 1200px,
+	1920px: 1800px,
+	2560px: 2400px,
+);
+
+.ui-container {
+
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+
+	box-sizing: border-box;
+
+	@each $breakpoint, $max-width in $ui-container-max-widths {
+
+		@media ( min-width: $breakpoint ) {
+
+			max-width: $max-width;
+
+		}
+
+	}
+
+	&_fluid {
+
+		max-width: 100%;
+
+	}
+
+	&_fill-height {
+
+		height: 100%;
+
+	}
+
+}

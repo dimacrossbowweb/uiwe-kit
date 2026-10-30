@@ -1,0 +1,24 @@
+
+$colors: 
+	
+	ampere-50,
+	ampere-200,
+	ampere-400,
+	ampere-600,
+	ampere-700,
+	ampere-800,
+	bolt-200,
+	bolt-300,
+	bolt-500,
+	bolt-600,
+	bolt-700,
+	accent, 
+	danger, 
+	success, 
+	warning;
+
+@each $name, $value in $colors {
+  .text--#{$name} {
+    color: var(--#{$name}, #{$value});
+  }
+}
